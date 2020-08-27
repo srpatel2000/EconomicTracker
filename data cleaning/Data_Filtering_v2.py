@@ -238,10 +238,19 @@ def affinity_daily_to_weekly(df):
         raise ValueError('New file converted from weekly to daily')
 
 
-def compare_rows(col1, col2):
-    combined_df = pd.DataFrame({'new_col': col1, 'old_col': col2})
-    combined_df['difference'] = (-0.01 <= combined_df['new_col'] - combined_df['old_col']) & \
-                                (combined_df['new_col'] - combined_df['old_col'] <= 0.01)
+def compare_rows(col1, col2, column_name):
+    combined_df = pd.DataFrame({("(new) " + str(column_name)): col1, ("(old) " + str(column_name)): col2})
+
+    if col1.dtype == 'int64' and column_name not in ['year', 'month', 'day', 'cityid', 'countyfips', 'statefips']:
+        combined_df['difference'] = (-500 <= combined_df["(new) " + str(column_name)] - combined_df["(old) " +
+                                                                                                    str(column_name)]) \
+                                    & (combined_df["(new) " + str(column_name)] - combined_df["(old) " +
+                                                                                              str(column_name)] <= 500)
+    else:
+        combined_df['difference'] = (-0.8 <= combined_df["(new) " + str(column_name)] - combined_df["(old) " +
+                                                                                                    str(column_name)]) \
+                                    & (combined_df["(new) " + str(column_name)] - combined_df["(old) " +
+                                                                                              str(column_name)] <= 0.8)
     if False in list(combined_df['difference']):
         print(combined_df)
         raise ValueError("Larger than 0.01 difference between columns")
@@ -264,7 +273,7 @@ def last_week_is_same(df, filename):
             raise ValueError("The columns have changed")
         else:
             try:
-                compare_rows(df.reset_index(drop=True).iloc[:last_week_size][i], last_week_df.iloc[:last_week_size][i])
+                compare_rows(df.reset_index(drop=True).iloc[:last_week_size][i], last_week_df.iloc[:last_week_size][i], i)
             except ValueError("The rows are not the same"):
                 return False
 
