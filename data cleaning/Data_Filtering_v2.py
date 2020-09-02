@@ -62,7 +62,10 @@ def womply_daily_to_weekly(df):
                     'merchants_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'countyfips' in df.columns and 'merchants_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -72,7 +75,10 @@ def womply_daily_to_weekly(df):
                     'merchants_all': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'statefips' in df.columns and 'merchants_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -88,7 +94,10 @@ def womply_daily_to_weekly(df):
                     'merchants_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'statefips' not in df.columns and 'countyfips' not in df.columns and 'merchants_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -103,7 +112,10 @@ def womply_daily_to_weekly(df):
                     'merchants_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'cityid' in df.columns and 'revenue_all' in df.columns:
         for column_name in df.columns:
@@ -119,7 +131,10 @@ def womply_daily_to_weekly(df):
                     'revenue_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'countyfips' in df.columns and 'revenue_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -129,7 +144,10 @@ def womply_daily_to_weekly(df):
                     'revenue_all': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'statefips' in df.columns and 'revenue_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -145,7 +163,10 @@ def womply_daily_to_weekly(df):
                     'revenue_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     else:
         agg_dict = {'year': 'last',
@@ -160,7 +181,10 @@ def womply_daily_to_weekly(df):
                     'revenue_ss70': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
 
 
@@ -182,7 +206,10 @@ def affinity_daily_to_weekly(df):
                     'date': 'last'
                    }
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'countyfips' in df.columns and 'spend_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -192,7 +219,10 @@ def affinity_daily_to_weekly(df):
                     'spend_all': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'statefips' in df.columns and 'spend_all' in df.columns:
         agg_dict = {'year': 'last',
@@ -211,7 +241,10 @@ def affinity_daily_to_weekly(df):
                     'spend_all_incmiddle': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     elif 'statefips' not in df.columns and 'countyfips' not in df.columns and 'cityid' not in df.columns:
         agg_dict = {'year': 'last',
@@ -229,7 +262,10 @@ def affinity_daily_to_weekly(df):
                     'spend_all_incmiddle': 'last',
                     'date': 'last'}
         df = df.resample('W-Mon', on='date').agg(agg_dict)
-        df = df[df['date'] <= '2020-08-03 00:00:00'].reset_index(drop=True)  # UPDATE
+        if df.tail(1).index[0] == df['date'].tail(1)[0]:
+            df = df[df['date'] <= df['date'].tail(1)[0]].reset_index(drop=True)
+        else:
+            df = df[df['date'] <= df['date'].tail(2)[0]].reset_index(drop=True)
         return df
     if 'spend_all_inclow' in df.columns:
         df['spend_all_inclow'] = df['spend_all_inclow'].astype(float)
@@ -311,6 +347,12 @@ def sd_city(filename):
     city = clean_df(city)
     if last_week_is_same(city, filename):
         city.to_csv('C:/Users/spate/Downloads/Track the Recovery/temp/{}'.format(filename), index=False)
+        if 'day' in city.columns:
+            print(city.tail(1)[['month', 'day']])
+        elif 'day_endofweek' in city.columns:
+            print(city.tail(1)[['month', 'day_endofweek']])
+        else:
+            print('There is day column')
         name_files(city, filename)
     else:
         raise ValueError('Last week\'s data not in the same format as this week\'s\n')
@@ -326,6 +368,12 @@ def sd_county(filename):
     county = clean_df(county)
     if last_week_is_same(county, filename):
         county.to_csv('C:/Users/spate/Downloads/Track the Recovery/temp/{}'.format(filename), index=False)
+        if 'day' in county.columns:
+            print(county.tail(1)[['month', 'day']])
+        elif 'day_endofweek' in county.columns:
+            print(county.tail(1)[['month', 'day_endofweek']])
+        else:
+            print('There is day column')
         name_files(county, filename)
     else:
         raise ValueError('Last week\'s data not in the same format as this week\'s\n')
@@ -340,6 +388,12 @@ def state_ca(filename):
     state = clean_df(state)
     if last_week_is_same(state, filename):
         state.to_csv('C:/Users/spate/Downloads/Track the Recovery/temp/{}'.format(filename), index=False)
+        if 'day' in state.columns:
+            print(state.tail(1)[['month', 'day']])
+        elif 'day_endofweek' in state.columns:
+            print(state.tail(1)[['month', 'day_endofweek']])
+        else:
+            print('There is day column')
         name_files(state, filename)
     else:
         raise ValueError('Last week\'s data not in the same format as this week\'s\n')
@@ -352,6 +406,12 @@ def us_national(filename):
     us = clean_df(us)
     if last_week_is_same(us, filename):
         us.to_csv('C:/Users/spate/Downloads/Track the Recovery/temp/{}'.format(filename), index=False)
+        if 'day' in us.columns:
+            print(us.tail(1)[['month', 'day']])
+        elif 'day_endofweek' in us.columns:
+            print(us.tail(1)[['month', 'day_endofweek']])
+        else:
+            print('There is day column')
         name_files(us, filename)
     else:
         raise ValueError('Last week\'s data not in the same format as this week\'s\n')
